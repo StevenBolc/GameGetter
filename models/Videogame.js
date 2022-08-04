@@ -5,14 +5,8 @@ class Videogame extends Model { }
 
 Videogame.init(
     {
-        id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            primaryKey: true,
-            autoIncrement: true,
-        },
         name: {
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT,
             allowNull: false,
         },
         platform: {
@@ -21,19 +15,19 @@ Videogame.init(
         },
         year_of_release: {
             type: DataTypes.INTEGER,
-            allowNull: false,
+            allowNull: true,
         },
         genre: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
         },
         publisher: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
         },
         global_sales: {
             type: DataTypes.DECIMAL,
-            allowNull: false,
+            allowNull: true,
         },
         critic_score: {
             type: DataTypes.INTEGER,
@@ -41,15 +35,15 @@ Videogame.init(
         },
         critic_count: {
             type: DataTypes.INTEGER,
-            allowNull: false,
+            allowNull: true,
         },
         developer: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
         },
         rating: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
         },
     },
     {

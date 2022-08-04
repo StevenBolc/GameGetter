@@ -11,3 +11,4 @@ User.hasMany(Videogame, {
 });
 
 module.exports = { Videogame, User };
+
