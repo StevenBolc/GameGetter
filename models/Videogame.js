@@ -9,12 +9,20 @@ Videogame.init(
             type: DataTypes.TEXT,
             allowNull: false,
         },
+        slug: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
         platform: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
         },
         year_of_release: {
             type: DataTypes.INTEGER,
+            allowNull: true,
+        },
+        description: {
+            type: DataTypes.STRING,
             allowNull: true,
         },
         genre: {
@@ -42,6 +50,14 @@ Videogame.init(
             allowNull: true,
         },
         rating: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
+        background_image: {
+            type: DataTypes.STRING, // This is a string of the URL. Please use inside <img src>
+            allowNull: true,
+        },
+        website: {
             type: DataTypes.STRING,
             allowNull: true,
         },
