@@ -60,4 +60,8 @@ router.post('/logout', asyncHandler(async (req, res) => {
     }
 }));
 
+router.put('/:id', asyncHandler(async (req, res) => {
+    const updateUserOwned = await User.findOne({ where: { user_id: req.session.user_id } })
+}))
+
 module.exports = router;
