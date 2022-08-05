@@ -1,7 +1,5 @@
 const home = document.getElementById('home');
-
-const login = document.getElementById('login');
-const logout = document.getElementById('logout');
+const dashboard = document.getElementById('dashboard');
 
 home.addEventListener('click', async (e) => {
     e.preventDefault();
@@ -14,30 +12,30 @@ home.addEventListener('click', async (e) => {
         document.location.replace('/');
     }
 });
-
-login.addEventListener('click', async (e) => {
-    // console.log('LOGIN');
+dashboard.addEventListener('click', async (e) => {
+    console.log('DASHBOARD');
     e.preventDefault();
-    const login = await fetch('/login', {
+    const response = await fetch('/dashboard', {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
     });
-    if (login.ok) {
-        document.location.replace('/login');
+    if (response.ok) {
+        console.log(document.location);
+        document.location.replace('/dashboard');
     }
 });
 
-const logOut = async () => {
+const logout = async () => {
     const response = await fetch('/api/users/logout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
     });
 
     if (response.ok) {
-        alert('logout successful!');
+        document.location.reload();
     } else {
         alert(response.statusText);
     }
 };
 
-logout.addEventListener('click', logOut);
+document.querySelector('#logout').addEventListener('click', logout);

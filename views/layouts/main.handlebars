@@ -15,9 +15,12 @@
         <div class="nav">
             <nav id="nav">
                 <button type="button" id="home">Home</button>
-                <button type="button" id="saved">Saved List</button>
-                <button type="button" id="login">Login</button>
+                <button type="button" id="dashboard">Dashboard</button>
+                {{!-- {{#if logged_in}} --}}
                 <button type="button" id="logout">Logout</button>
+                {{!-- {{else}} --}}
+                <button type="button" id="login">Login</button>
+                {{!-- {{/if}} --}}
             </nav>
         </div>
     </header>
@@ -25,6 +28,12 @@
     <main>
         {{{body}}}
     </main>
+
+    {{!-- {{#if logged_in}}
+    <script src="/js/logout.js"></script>
+    {{else}} --}}
+    <script src="/js/main.js"></script>
+    {{!-- {{/if}} --}}
 </body>
 
 </html>
