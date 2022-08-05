@@ -1,23 +1,28 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 const withAuth = require('../../utils/auth');
-const asyncHandler = require('express-async-handler');
+// const asyncHandler = require('express-async-handler');
 
-router.post('/', asyncHandler(async (req, res) => {
-    const dbUserData = await User.create({
-        name: req.body.name,
-        email: req.body.email,
-        password: req.body.password,
-    });
+router.post('/', async (req, res) => {
+    try {
+        const dbUserData = await User.create({
+            name: req.body.username,
+            email: req.body.email,
+            password: req.body.password,
+        });
 
-    req.session.save(() => {
-        req.session.logged_in = true;
+        req.session.save(() => {
+            req.session.logged_in = true;
 
-        res.status(200).json(dbUserData);
-    });
-}));
+            res.status(200).json(dbUserData);
+        });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+});
 
-router.post('/login', asyncHandler(async (req, res) => {
+router.post('/login', async (req, res) => {
 
     const userData = await User.findOne({
         where: {
@@ -47,9 +52,9 @@ router.post('/login', asyncHandler(async (req, res) => {
 
         res.status(200).json({ user: userData, message: 'You are now logged in!' });
     });
-}));
+});
 
-router.post('/logout', asyncHandler(async (req, res) => {
+router.post('/logout', async (req, res) => {
     if (req.session.logged_in) {
         req.session.destroy(() => {
             res.json({ message: 'logout successful' })
@@ -58,10 +63,13 @@ router.post('/logout', asyncHandler(async (req, res) => {
     } else {
         res.status(404).end();
     }
-}));
+});
 
-router.put('/:id', asyncHandler(async (req, res) => {
-    const updateUserOwned = await User.findOne({ where: { user_id: req.session.user_id } })
-}))
+router.put('/:id', async (req, res) => {
+    const updateUserOwned = await User.findOne({ where: { user_id: req.session.user_id } });
+    await updateUserOwned.update({
+        //
+    })
+})
 
 module.exports = router;
