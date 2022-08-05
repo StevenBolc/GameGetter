@@ -1,30 +1,31 @@
 const router = require('express').Router();
 const { User, Videogame } = require('../models');
 const withAuth = require('../utils/auth');
+const asyncHandler = require('express-async-handler');
 
-router.get('/', async (req, res) => {
+router.get('/', asyncHandler(async (req, res) => {
     res.json({ message: 'get request successful' })
     // res.render('homepage');
-});
+}));
 
-router.get('/login', (req, res) => {
+router.get('/login', asyncHandler(async (req, res) => {
     if (req.session.logged_in) {
         res.redirect('/');
         return;
     }
     res.json({ message: 'get request successful' })
     // res.render('login');
-});
+}));
 
-router.get('/signup', (req, res) => {
+router.get('/signup', asyncHandler(async (req, res) => {
     res.json({ message: 'get request successful' })
     // res.render('signup');
-});
+}));
 
-router.get('/dashboard', (req, res) => {
+router.get('/dashboard', asyncHandler(async (req, res) => {
     res.json({ message: 'get request successful' })
     // res.render('dashboard');
     // add withAuth
-})
+}));
 
 module.exports = router;
