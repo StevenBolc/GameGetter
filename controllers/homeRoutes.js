@@ -43,12 +43,12 @@ router.post('/combine', asyncHandler(async (req, res) => {
                 { slug: slug.slug },
                 {
                     where: {
-                        [Op.between]: [9001, 10000],
+                        // [Op.between]: [9001, 10000],
                         name: slug.name
                     },
                 }
             )
-        } catch(error) {
+        } catch (error) {
             console.error(error)
         }
     })
