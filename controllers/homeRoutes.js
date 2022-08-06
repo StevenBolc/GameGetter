@@ -19,9 +19,9 @@ router.get('/:game', asyncHandler(async (req, res) => {
                     [Op.substring]: req.params.game,
                 }
             },
-            include: [{
-                attributes: ['name', 'platform', 'year_of_release', 'publisher', 'background_image', 'website']
-            }]
+            // include: [{
+            //     attributes: ['name', 'platform', 'year_of_release', 'publisher', 'background_image', 'website']
+            // }]
 
         })
         res.json(games);
@@ -44,7 +44,7 @@ router.get('/signup', asyncHandler(async (req, res) => {
     res.render('signup');
 }));
 
-router.get('/dashboard', asyncHandler(async (req, res) => {
+router.get('/dashboard', withAuth, asyncHandler(async (req, res) => {
     res.json({ message: 'get request successful' })
     // res.render('dashboard');
     // add withAuth
