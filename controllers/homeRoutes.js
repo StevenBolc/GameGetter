@@ -10,6 +10,23 @@ router.get('/', asyncHandler(async (req, res) => {
     res.render('homepage');
 }));
 
+router.get('/:game', asyncHandler(async (req, res) => {
+    try {
+
+        const games = await Videogame.findAll({
+            where: {
+                slug: {
+                    [Op.substring]: req.params.game,
+                }
+            }
+        })
+        res.json(games);
+    } catch (error) {
+        res.status(500).json({ message: 'not found' })
+        res.json()
+    }
+}))
+
 router.get('/login', asyncHandler(async (req, res) => {
     if (req.session.logged_in) {
         res.redirect('/');
