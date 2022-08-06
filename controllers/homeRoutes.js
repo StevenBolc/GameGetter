@@ -10,6 +10,28 @@ router.get('/', asyncHandler(async (req, res) => {
     res.render('homepage');
 }));
 
+router.get('/:game', asyncHandler(async (req, res) => {
+    try {
+        // basic search route working with slugs
+        const games = await Videogame.findAll({
+            where: {
+                slug: {
+                    [Op.substring]: req.params.game,
+                }
+            },
+            // include: [{
+            //     attributes: ['name', 'platform', 'year_of_release', 'publisher', 'background_image', 'website']
+            // }]
+
+        })
+        res.json(games);
+        //will need to render results through handlebars
+    } catch (error) {
+        res.status(500).json({ message: 'not found' })
+        res.json()
+    }
+}))
+
 router.get('/login', asyncHandler(async (req, res) => {
     if (req.session.logged_in) {
         res.redirect('/');
@@ -22,7 +44,7 @@ router.get('/signup', asyncHandler(async (req, res) => {
     res.render('signup');
 }));
 
-router.get('/dashboard', asyncHandler(async (req, res) => {
+router.get('/dashboard', withAuth, asyncHandler(async (req, res) => {
     res.json({ message: 'get request successful' })
     // res.render('dashboard');
     // add withAuth
@@ -43,7 +65,9 @@ router.post('/combine', asyncHandler(async (req, res) => {
                 { slug: slug.slug },
                 {
                     where: {
+
                         name: slug.name,
+
                     },
                 }
             )
