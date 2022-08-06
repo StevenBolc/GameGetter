@@ -1,0 +1,43 @@
+@font-face {
+    font-family: arcade-classic;
+    src: url("/assets/font/ARCADECLASSIC.TTF");
+}
+:root {
+    --yellow: rgba(252, 219, 2);
+    --pink: rgb(255, 0, 230);
+    --purple: rgba(102, 2, 252);
+}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: arcade-classic;
+    background-color: black;
+}
+
+.container {
+    position: absolute;
+    top: 30vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    letter-spacing: 2px;
+    color: #fff;
+    text-align: center;
+}
+
+.container .card {
+    background: var(--yellow);
+    border-radius: 10px;
+    box-shadow: -6px -6px 6px var(--yellow),
+    -8px -8px 8px var(--pink), 
+    -10px -10px 10px var(--purple), 
+    6px 6px 6px var(--yellow),
+    8px 8px 8px var(--purple),
+    10px 10px 10px var(--pink);
+}
+
+.btn {
+    color: var(--yellow);
+    border-color: var(--yellow);
+}
