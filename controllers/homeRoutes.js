@@ -51,8 +51,8 @@ router.get('/dashboard', withAuth, asyncHandler(async (req, res) => {
 }));
 
 router.post('/combine', asyncHandler(async (req, res) => {
-    const videogames = await Videogame.findAll();
-    const slugs = videogames.map(game => {
+    const videogames = await Videogame.findAll();  //used for data entry ---> { offset: 13612, limit: 5000 }
+    const slugs = videogames.map(game => {   
         const gamename = game.name;
         return {
             name: gamename,
@@ -65,8 +65,9 @@ router.post('/combine', asyncHandler(async (req, res) => {
                 { slug: slug.slug },
                 {
                     where: {
-                        // [Op.between]: [9001, 10000],
-                        name: slug.name
+
+                        name: slug.name,
+
                     },
                 }
             )
@@ -76,5 +77,6 @@ router.post('/combine', asyncHandler(async (req, res) => {
     })
     res.json({ message: 'post request successful' });
 }));
+
 
 module.exports = router;
