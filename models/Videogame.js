@@ -10,7 +10,7 @@ Videogame.init(
             allowNull: false,
         },
         slug: {
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT,
             allowNull: true,
         },
         platform: {
@@ -64,6 +64,7 @@ Videogame.init(
     },
     {
         sequelize,
+        timestamps: false,
         underscored: true,
         modelName: 'videogame',
     }
