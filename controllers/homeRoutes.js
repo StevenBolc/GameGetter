@@ -12,15 +12,20 @@ router.get('/', asyncHandler(async (req, res) => {
 
 router.get('/:game', asyncHandler(async (req, res) => {
     try {
-
+        // basic search route working with slugs
         const games = await Videogame.findAll({
             where: {
                 slug: {
                     [Op.substring]: req.params.game,
                 }
-            }
+            },
+            include: [{
+                attributes: ['name', 'platform', 'year_of_release', 'publisher', 'background_image', 'website']
+            }]
+
         })
         res.json(games);
+        //will need to render results through handlebars
     } catch (error) {
         res.status(500).json({ message: 'not found' })
         res.json()
