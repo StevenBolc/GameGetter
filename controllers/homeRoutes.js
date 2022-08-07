@@ -13,7 +13,7 @@ router.get('/', asyncHandler(async (req, res) => {
 router.get('/game/:game', asyncHandler(async (req, res) => {
     try {
         // basic search route working with slugs
-        const games = await Videogame.findAll({
+        const gamesData = await Videogame.findAll({
             where: {
                 slug: {
                     [Op.substring]: req.params.game,
@@ -24,7 +24,16 @@ router.get('/game/:game', asyncHandler(async (req, res) => {
             // }]
 
         })
-        res.json(games);
+        const games = gamesData.map((games) => games.get({ plain: true }));
+        console.log(games);
+        if (games.length === 0) {
+            res.json({ message: 'no games found' })
+        }
+        // res.json(games);
+        res.render('cardPage', {
+            layout: 'main.handlebars',
+            games
+        });
         //will need to render results through handlebars
     } catch (error) {
         res.status(500).json({ message: 'not found' })
