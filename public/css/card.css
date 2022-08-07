@@ -16,6 +16,7 @@
 }
 
 .container {
+    flex-wrap: wrap;
     position: absolute;
     top: 30vh;
     display: flex;
@@ -27,6 +28,7 @@
 }
 
 .container .card {
+    margin: 30px;
     background: var(--yellow);
     border-radius: 10px;
     box-shadow: -6px -6px 6px var(--yellow),
