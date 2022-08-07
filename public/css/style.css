@@ -10,3 +10,18 @@
     border: solid 1px var(--text-color);
     border-radius: 3px;
 }
+
+#sign-up,
+.form-group button {
+    border-radius: 3px;
+    border: solid 1px;
+    background-color: rgb(38, 4, 69);
+    color: white;
+    padding: 0 6px;
+    transition: .3s;
+}
+
+#sign-up:hover,
+.form-group button:hover {
+    background-color: rgb(101, 67, 132);
+}
