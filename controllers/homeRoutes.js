@@ -5,6 +5,7 @@ const asyncHandler = require('express-async-handler');
 const toSlug = require("../utils/helpers");
 const { Op } = require("sequelize");
 const sequelize = require('../config/connection');
+const { response, request } = require('express');
 const axios = require('axios').default;
 require('dotenv').config();
 
@@ -105,8 +106,8 @@ router.post('/combine', asyncHandler(async (req, res) => {
 // for each slug in the variable, pass one to the ${slug}
 
 axios
-    .get(`https://api.rawg.io/api/games/super-mario-bros?key=7ee3b87431ea4765a625d53ee46cc6c2&dates=2019-09-01,2019-09-30&platforms=18,1,7`)
-    .then((res) => console.log(res.data.description, res.data.background_image, res.data.website))
+    .get(`https://api.rawg.io/api/games/super-mario-bros?key=${process.env.RAWG_KEY}&dates=2019-09-01,2019-09-30&platforms=18,1,7`)
+    .then((response) => console.log(response.data.description, response.data.background_image, response.data.website))
     .catch((error) => console.log(error));
 
 module.exports = router;
