@@ -4,7 +4,6 @@ const withAuth = require('../utils/auth');
 const asyncHandler = require('express-async-handler');
 const toSlug = require("../utils/helpers");
 const { Op } = require("sequelize");
-const { response } = require('express');
 const sequelize = require('../config/connection');
 const { response, request } = require('express');
 const axios = require('axios').default;
