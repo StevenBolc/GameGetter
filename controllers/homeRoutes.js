@@ -15,7 +15,7 @@ router.get('/', asyncHandler(async (req, res) => {
     res.render('homepage');
 }));
 
-router.get('/:game', asyncHandler(async (req, res) => {
+router.get('/game/:game', asyncHandler(async (req, res) => {
     try {
         // basic search route working with slugs
         const games = await Videogame.findAll({
@@ -37,16 +37,26 @@ router.get('/:game', asyncHandler(async (req, res) => {
     }
 }))
 
-router.get('/login', asyncHandler(async (req, res) => {
-    if (req.session.logged_in) {
-        res.redirect('/');
-        return;
-    }
-    res.render('login');
-}));
+router.get('/contact', (req, res) => {
+    res.render('contactPage', {
+        layout: 'contact.handlebars'
+    })
+    // res.json({ message: 'success' })
+})
+
+router.get('/login', (req, res) => {
+    // if (req.session.logged_in) {
+    //     res.redirect('/');
+    //     return;
+    // }
+    res.render('loginPage', {
+        layout: 'main.handlebars'
+    });
+    // res.json({ message: 'welcome' })
+});
 
 router.get('/signup', asyncHandler(async (req, res) => {
-    res.render('signup');
+    res.render('signupPage');
 }));
 
 router.get('/dashboard', withAuth, asyncHandler(async (req, res) => {
