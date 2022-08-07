@@ -28,6 +28,6 @@ document.querySelector('#sign-up').addEventListener('click', async () => {
         headers: { 'Content-Type': 'application/json' },
     });
     if (response.ok) {
-        document.location.replace('signup');
+        document.location.replace('/signup');
     }
 });
