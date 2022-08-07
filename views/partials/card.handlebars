@@ -1,0 +1,14 @@
+<link rel="stylesheet" href="/css/card.css" />
+
+<section class="container">
+    {{#each videogames as |game|}}
+    <div class="card" style="width: 18rem">
+        <img src="/assets/images/jitter.jpg" class="card-img-top" alt="..." />
+        <div class="card-body">
+            <h5 class="card-title cardText">{{game.name}}</h5>
+            <p class="card-text">Game description goes here.</p>
+            <a href="#" class="btn btn-dark">Add Favorite</a>
+        </div>
+    </div>
+    {{/each}}
+</section>
