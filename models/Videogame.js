@@ -22,7 +22,7 @@ Videogame.init(
             allowNull: true,
         },
         description: {
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT('medium'),
             allowNull: true,
         },
         genre: {
@@ -54,7 +54,7 @@ Videogame.init(
             allowNull: true,
         },
         background_image: {
-            type: DataTypes.STRING, // This is a string of the URL. Please use inside <img src>
+            type: DataTypes.STRING, 
             allowNull: true,
         },
         website: {
