@@ -4,7 +4,6 @@ const withAuth = require('../utils/auth');
 const asyncHandler = require('express-async-handler');
 const toSlug = require("../utils/helpers");
 const { Op } = require("sequelize");
-const { response } = require('express');
 const sequelize = require('../config/connection');
 const axios = require('axios').default;
 require('dotenv').config();
@@ -14,10 +13,10 @@ router.get('/', asyncHandler(async (req, res) => {
     res.render('homepage');
 }));
 
-router.get('/:game', asyncHandler(async (req, res) => {
+router.get('/game/:game', asyncHandler(async (req, res) => {
     try {
         // basic search route working with slugs
-        const games = await Videogame.findAll({
+        const gamesData = await Videogame.findAll({
             where: {
                 slug: {
                     [Op.substring]: req.params.game,
@@ -28,7 +27,16 @@ router.get('/:game', asyncHandler(async (req, res) => {
             // }]
 
         })
-        res.json(games);
+        const games = gamesData.map((games) => games.get({ plain: true }));
+        console.log(games);
+        if (games.length === 0) {
+            res.json({ message: 'no games found' })
+        }
+        // res.json(games);
+        res.render('cardPage', {
+            layout: 'main.handlebars',
+            games
+        });
         //will need to render results through handlebars
     } catch (error) {
         res.status(500).json({ message: 'not found' })
@@ -36,16 +44,26 @@ router.get('/:game', asyncHandler(async (req, res) => {
     }
 }))
 
-router.get('/login', asyncHandler(async (req, res) => {
-    if (req.session.logged_in) {
-        res.redirect('/');
-        return;
-    }
-    res.render('login');
-}));
+router.get('/contact', (req, res) => {
+    res.render('contactPage', {
+        layout: 'contact.handlebars'
+    })
+    // res.json({ message: 'success' })
+})
+
+router.get('/login', (req, res) => {
+    // if (req.session.logged_in) {
+    //     res.redirect('/');
+    //     return;
+    // }
+    res.render('loginPage', {
+        layout: 'main.handlebars'
+    });
+    // res.json({ message: 'welcome' })
+});
 
 router.get('/signup', asyncHandler(async (req, res) => {
-    res.render('signup');
+    res.render('signupPage');
 }));
 
 router.get('/dashboard', withAuth, asyncHandler(async (req, res) => {
@@ -111,7 +129,5 @@ let slug = "pokemon-red";
 //     },
 //     )
 // }));
-
-
 
 module.exports = router;
