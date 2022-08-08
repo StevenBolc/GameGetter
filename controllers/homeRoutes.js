@@ -13,7 +13,7 @@ router.get('/', asyncHandler(async (req, res) => {
     res.render('homepage');
 }));
 
-router.get('/game/:game', asyncHandler(async (req, res) => {
+router.get('/gamesearch/:game', asyncHandler(async (req, res) => {
     try {
         // basic search route working with slugs
         const gamesData = await Videogame.findAll({
@@ -33,7 +33,7 @@ router.get('/game/:game', asyncHandler(async (req, res) => {
             res.json({ message: 'no games found' })
         }
         // res.json(games);
-        res.render('cardPage', {
+        res.render('searchResults', {
             layout: 'main.handlebars',
             games
         });
@@ -52,10 +52,10 @@ router.get('/contact', (req, res) => {
 })
 
 router.get('/login', (req, res) => {
-    // if (req.session.logged_in) {
-    //     res.redirect('/');
-    //     return;
-    // }
+    if (req.session.logged_in) {
+        res.redirect('/');
+        return;
+    }
     res.render('loginPage', {
         layout: 'main.handlebars'
     });
@@ -66,10 +66,29 @@ router.get('/signup', asyncHandler(async (req, res) => {
     res.render('signupPage');
 }));
 
-router.get('/dashboard', withAuth, asyncHandler(async (req, res) => {
-    res.json({ message: 'get request successful' })
-    // res.render('dashboard');
-    // add withAuth
+// router.get('/dashboard', withAuth, asyncHandler(async (req, res) => {
+//     res.json({ message: 'get request successful' })
+// res.render('dashboard');
+// add withAuth
+// }));
+
+router.get('/game/:id', asyncHandler(async (req, res) => {
+    try {
+        const gameData = await Videogame.findByPk(req.params.id, {
+            where: {
+                id: req.params.id
+            },
+            attributes: ['id', 'name', 'platform', 'year_of_release', 'description', 'genre', 'publisher', 'background_image', 'website']
+        });
+        const game = gameData.get({ plain: true });
+        res.json(game);
+        // res.render('gamePage', {
+        //     layout: 'main.handlebars',
+        //     game
+        // });
+    } catch (err) {
+        res.status(500).json(err);
+    }
 }));
 
 router.post('/combine', asyncHandler(async (req, res) => {
@@ -140,3 +159,5 @@ async function apiReqwithSlug() {
 apiReqwithSlug();
 
 module.exports = router;
+
+// router.get()

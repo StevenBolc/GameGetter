@@ -3,14 +3,14 @@ const { User, Videogame } = require('../models');
 const withAuth = require('../utils/auth');
 const asyncHandler = require('express-async-handler');
 
-router.get('/', asyncHandler(async (req, res) => {
+router.get('/', async (req, res) => {
     // find all games in user owned 
     try {
 
         const myGames = await Videogame.findAll({
-            // where: {
-            //     user_id: req.session.user_id
-            // },
+            where: {
+                user_id: req.session.user_id
+            },
             attributes: [
                 'name',
                 'description',
@@ -18,14 +18,15 @@ router.get('/', asyncHandler(async (req, res) => {
                 'background_image',
                 'website',
             ],
-            include: [
-                {
-                    model: User,
-                    attributes: ['id', 'name']
-                },
-            ],
+            // include: [
+            //     {
+            //         model: User,
+            //         attributes: ['id', 'name']
+            //     },
+            // ],
         });
         const games = myGames.map((game) => game.get({ plain: true }));
+        console.log(games);
         res.render('myList', {
             layout: 'dashboard.handlebars',
             games,
@@ -36,6 +37,6 @@ router.get('/', asyncHandler(async (req, res) => {
     }
 
     // res.json({ message: 'get successful' })
-}));
+});
 
 module.exports = router;
