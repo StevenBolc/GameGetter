@@ -2,11 +2,13 @@
     font-family: arcade-classic;
     src: url("/assets/font/ARCADECLASSIC.TTF");
 }
+
 :root {
     --yellow: rgba(252, 219, 2);
     --pink: rgb(255, 0, 230);
     --purple: rgba(102, 2, 252);
 }
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -17,7 +19,7 @@
 
 .container {
     flex-wrap: wrap;
-    position: absolute;
+    /* position: fixed; */
     top: 30vh;
     display: flex;
     justify-content: center;
@@ -29,14 +31,15 @@
 
 .container .card {
     margin: 30px;
+    padding: 2px;
     background: var(--yellow);
     border-radius: 10px;
     box-shadow: -6px -6px 6px var(--yellow),
-    -8px -8px 8px var(--pink), 
-    -10px -10px 10px var(--purple), 
-    6px 6px 6px var(--yellow),
-    8px 8px 8px var(--purple),
-    10px 10px 10px var(--pink);
+        -8px -8px 8px var(--pink),
+        -10px -10px 10px var(--purple),
+        6px 6px 6px var(--yellow),
+        8px 8px 8px var(--purple),
+        10px 10px 10px var(--pink);
 }
 
 .btn {

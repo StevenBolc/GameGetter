@@ -29,16 +29,17 @@ router.get('/gamesearch/:game', asyncHandler(async (req, res) => {
         })
         const games = gamesData.map((games) => games.get({ plain: true }));
         console.log(games);
-        // if (!games.length) {
-        //     res.render('notFound', {
-        //         layout: '404.handlebars'
-        //     });
-        // }
-        // res.json(games);
-        res.render('searchResults', {
-            layout: 'main.handlebars',
-            games
-        });
+        if (games.length === 0) {
+            res.render('notFound', {
+                layout: '404.handlebars'
+            });
+        } else {
+            // res.json(games);
+            res.render('searchResults', {
+                layout: 'main.handlebars',
+                games
+            })
+        };
         //will need to render results through handlebars
     } catch (error) {
         res.status(500).json({ message: 'not found' })
