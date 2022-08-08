@@ -7,72 +7,76 @@
   --yellow: rgba(252, 219, 2);
   --pink: rgb(255, 0, 230);
   --purple: rgba(102, 2, 252);
-  --darkblue:rgb(3, 27, 248);
-  --lightblue:rgb(3, 249, 232);
-  --white:rgb(255, 255, 255);
+  --darkblue: rgb(3, 27, 248);
+  --lightblue: rgb(3, 249, 232);
+  --white: rgb(255, 255, 255);
   --limegreen: rgb(114, 253, 1);
   --darkgreen: rgb(3, 42, 0);
   --enginered: rgb(255, 1, 1);
   --brickred: rgb(74, 3, 3);
-  --highlighter:rgb(246, 254, 0);
+  --highlighter: rgb(246, 254, 0);
   --mustard: rgb(243, 198, 0);
-  --royalpurple:rgb(38, 4, 69);
-  --orange:rgb(255, 123, 0);
+  --royalpurple: rgb(38, 4, 69);
+  --orange: rgb(255, 123, 0);
   --black: rgb(0, 0, 0);
   --grey: rgb(57, 57, 57);
-  --brightpurple:rgb(166, 0, 255);
+  --brightpurple: rgb(166, 0, 255);
 }
 
 
-*{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: arcade-classic;
-    background-color: rgb(0, 0, 0);
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: arcade-classic;
+  background-color: rgb(0, 0, 0);
 }
 
-body{
+body {
   position: relative;
 }
 
-.contactForm{
-  display: block;
+.contactForm {
+  /* display: block; */
   justify-content: center;
   align-items: center;
   min-height: 60vh;
+  margin-bottom: 100px;
 }
-.contactForm button{
+
+.contactForm button {
   margin-top: 2rem;
   background-color: var(--orange);
   color: var(--white);
   box-shadow: 0 0 10px var(--limegreen);
 }
-.contactForm input{
-  box-shadow: 0 0 10px var(--limegreen);
-}
-.contactForm textarea{
+
+.contactForm input {
   box-shadow: 0 0 10px var(--limegreen);
 }
 
-.logoPreview{
+.contactForm textarea {
+  box-shadow: 0 0 10px var(--limegreen);
+}
+
+.logoPreview {
   display: flex;
   justify-content: center;
   align-items: center;
-padding-top: 2rem;
-padding-bottom: 2rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
-h1{
+h1 {
   position: relative;
-  font-size:14vw;
-  color:var(--black);
-  text-shadow:0 0 15px var(--pink);
+  font-size: 14vw;
+  color: var(--black);
+  text-shadow: 0 0 15px var(--pink);
   -webkit-text-stroke: 0.2vw var(--black);
   text-transform: uppercase;
 }
 
-h1::before{
+h1::before {
   content: attr(data-text);
   position: absolute;
   top: 0;
@@ -85,38 +89,42 @@ h1::before{
   overflow: hidden;
   animation: animate 6s linear infinite;
 }
-@keyframes animate
-{
-  0%,10%,100%
-  {
+
+@keyframes animate {
+
+  0%,
+  10%,
+  100% {
     width: 0;
   }
-  70%,90%{
+
+  70%,
+  90% {
     width: 100%;
   }
 }
 
-.bolcar{
+.bolcar {
   color: var(--lightblue);
   text-shadow: 0 0 5px var(--white);
 }
 
-.marshall{
+.marshall {
   color: var(--limegreen);
   text-shadow: 0 0 5px var(--white);
 }
 
-.vargas{
+.vargas {
   color: var(--enginered);
   text-shadow: 0 0 5px var(--white);
 }
 
-.evans{
+.evans {
   color: var(--mustard);
   text-shadow: 0 0 5px var(--white);
 }
 
-.maddox{
+.maddox {
   color: var(--purple);
   text-shadow: 0 0 4px var(--white);
 }
@@ -137,62 +145,62 @@ h1::before{
   transition: 0.5s;
 }
 
-.social div a img.steven{
+.social div a img.steven {
   border-radius: 10px;
   box-shadow: -4px -4px 4px var(--white),
-  -6px -6px 6px var(--lightblue), 
-  -8px -8px 8px var(--darkblue), 
-  4px 4px 4px var(--white),
-  6px 6px 6px var(--lightblue),
-  8px 8px 8px var(--darkblue); 
+    -6px -6px 6px var(--lightblue),
+    -8px -8px 8px var(--darkblue),
+    4px 4px 4px var(--white),
+    6px 6px 6px var(--lightblue),
+    8px 8px 8px var(--darkblue);
 }
 
-.social div a img.kris{
+.social div a img.kris {
   border-radius: 10px;
   box-shadow: -4px -4px 4px var(--white),
-  -6px -6px 6px var(--limegreen), 
-  -8px -8px 8px var(--darkgreen), 
-  4px 4px 4px var(--white),
-  6px 6px 6px var(--limegreen),
-  8px 8px 8px var(--darkgreen); 
+    -6px -6px 6px var(--limegreen),
+    -8px -8px 8px var(--darkgreen),
+    4px 4px 4px var(--white),
+    6px 6px 6px var(--limegreen),
+    8px 8px 8px var(--darkgreen);
 }
 
-.social div a img.diego{
+.social div a img.diego {
   border-radius: 10px;
   box-shadow: -4px -4px 4px var(--white),
-  -6px -6px 6px var(--enginered), 
-  -8px -8px 8px var(--brickred), 
-  4px 4px 4px var(--white),
-  6px 6px 6px var(--enginered),
-  8px 8px 8px var(--brickred); 
+    -6px -6px 6px var(--enginered),
+    -8px -8px 8px var(--brickred),
+    4px 4px 4px var(--white),
+    6px 6px 6px var(--enginered),
+    8px 8px 8px var(--brickred);
 }
 
-.social div a img.tyler{
+.social div a img.tyler {
   border-radius: 10px;
   box-shadow: -4px -4px 4px var(--white),
-  -6px -6px 6px var(--highlighter), 
-  -8px -8px 8px var(--mustard), 
-  4px 4px 4px var(--white),
-  6px 6px 6px var(--highlighter),
-  8px 8px 8px var(--mustard); 
+    -6px -6px 6px var(--highlighter),
+    -8px -8px 8px var(--mustard),
+    4px 4px 4px var(--white),
+    6px 6px 6px var(--highlighter),
+    8px 8px 8px var(--mustard);
 }
 
-.social div a img.zachary{
+.social div a img.zachary {
   border-radius: 10px;
   box-shadow: -4px -4px 4px var(--white),
-  -6px -6px 6px var(--purple), 
-  -8px -8px 8px var(--royalpurple), 
-  4px 4px 4px var(--white),
-  6px 6px 6px var(--purple),
-  8px 8px 8px var(--royalpurple); 
+    -6px -6px 6px var(--purple),
+    -8px -8px 8px var(--royalpurple),
+    4px 4px 4px var(--white),
+    6px 6px 6px var(--purple),
+    8px 8px 8px var(--royalpurple);
 }
 
 .social div a img:hover {
   transform: scale(1.1) translateY(-15px);
 }
 
-footer{
-  position: absolute;
-  bottom: 20px;
+footer {
+  position: fixed;
+  bottom: 2px;
   left: 0;
 }

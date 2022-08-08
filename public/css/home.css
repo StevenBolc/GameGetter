@@ -7,18 +7,18 @@
     --yellow: rgba(252, 219, 2);
     --pink: rgb(255, 0, 230);
     --purple: rgba(102, 2, 252);
-    --darkblue:rgb(3, 27, 248);
-    --lightblue:rgb(3, 249, 232);
-    --white:rgb(255, 255, 255);
+    --darkblue: rgb(3, 27, 248);
+    --lightblue: rgb(3, 249, 232);
+    --white: rgb(255, 255, 255);
     --limegreen: rgb(114, 253, 1);
     --darkgreen: rgb(3, 42, 0);
     --enginered: rgb(255, 1, 1);
     --brickred: rgb(74, 3, 3);
-    --highlighter:rgb(246, 254, 0);
+    --highlighter: rgb(246, 254, 0);
     --mustard: rgb(243, 198, 0);
-    --royalpurple:rgb(38, 4, 69);
-    --orange:rgb(255, 123, 0);
-  }
+    --royalpurple: rgb(38, 4, 69);
+    --orange: rgb(255, 123, 0);
+}
 
 * {
     box-sizing: border-box;
@@ -27,20 +27,23 @@
     font-family: arcade-classic;
 }
 
-.searchbar{
+.searchbar {
     width: 40rem;
-    }
-    .searchInput{
-        width: 80%;
-        box-shadow: 0 0 10px var(--orange);
-    }
-    .searchbtn{
-        box-shadow: 0 0 10px var(--orange);
-    }
+}
+
+.searchInput {
+    width: 80%;
+    box-shadow: 0 0 10px var(--orange);
+}
+
+.searchbtn {
+    box-shadow: 0 0 10px var(--orange);
+}
 
 .showcase {
     position: absolute;
     right: 0;
+    /* margin-top: 60px; */
     width: 100%;
     min-height: 100vh;
     padding: 100px;
@@ -58,25 +61,27 @@
 }
 
 .showcase header {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     padding: 40px 100px;
-    z-index: 1000;
+    z-index: 2;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
-.groupname{
+
+.groupname {
     margin: 0;
 }
+
 .logo {
     text-transform: uppercase;
     cursor: pointer;
 }
 
-.logo a{
+.logo a {
     display: flex;
     align-items: center;
     color: #fff;
@@ -107,7 +112,7 @@
 }
 
 .showcase video {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -176,13 +181,16 @@
 }
 
 @media (max-width: 798px) {
+
     .showcase,
     .showcase header {
         padding: 40px;
     }
+
     .text h2 {
         font-size: 3em;
     }
+
     .text h3 {
         font-size: 2em;
     }
