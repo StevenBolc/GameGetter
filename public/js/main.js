@@ -16,7 +16,8 @@ search.addEventListener('submit', async (e) => {
         headers: { 'Content-Type': 'application/json' },
     });
     if (response.ok) {
-        document.location.replace(`/gamesearch/${search}`)
+        // document.location.replace(`/gamesearch/${search}`)
+        response.json({ message: 'ok' })
     }
 })
 

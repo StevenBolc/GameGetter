@@ -3,11 +3,11 @@
 <section class="container" style="display: flex-wrap;">
     {{#each games as |game|}}
     <div class="card" style="width: 18rem">
-        <img src="/assets/images/jitter.jpg" class="card-img-top" alt="..." />
+        <img src='{{game.background_image}}' class="card-img-top" alt="{{game.name}} poster" />
         <div class="card-body">
             <h5 class="card-title cardText">{{game.name}}</h5>
-            <p class="card-text">Game description goes here.</p>
-            <a href="#" class="btn btn-dark">Add Favorite</a>
+            <p class="card-text">{{game.platform}}</p>
+            {{!-- <a href="#" class="btn btn-dark">Add Favorite</a> --}}
         </div>
     </div>
     {{/each}}

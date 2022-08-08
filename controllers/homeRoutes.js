@@ -29,9 +29,11 @@ router.get('/gamesearch/:game', asyncHandler(async (req, res) => {
         })
         const games = gamesData.map((games) => games.get({ plain: true }));
         console.log(games);
-        if (games.length === 0) {
-            res.json({ message: 'no games found' })
-        }
+        // if (!games.length) {
+        //     res.render('notFound', {
+        //         layout: '404.handlebars'
+        //     });
+        // }
         // res.json(games);
         res.render('searchResults', {
             layout: 'main.handlebars',
@@ -130,33 +132,33 @@ router.post('/combine', asyncHandler(async (req, res) => {
 //     });
 // }));
 
-async function apiReqwithSlug() {
-    const allSlugs = await Videogame.findAll({
-        // offset: //int, limit: //int
-    });
-    const slugArr = allSlugs.map(eachSlug => {
-        const x = eachSlug.slug // Instead of slug: "wii-sports" it is logging "wii-sports"
-        console.log(x);
-        axios
-            .get(`http://api.rawg.io/api/games/${x}?key=${process.env.RAWG_KEY}&dates=2019-09-01,2019-09-30&platforms=18,1,7`)
-            .then((response) => {
-                Videogame.update(
-                    {
-                        description: response.data.description,
-                        background_image: response.data.background_image,
-                        website: response.data.website
-                    },
-                    {
-                        where: {
-                            slug: x,
-                        }
-                    });
-            })
-            .then((response) => { console.log(response) })
-            .catch((error) => console.log(error));
-    })
-}
-apiReqwithSlug();
+// async function apiReqwithSlug() {
+//     const allSlugs = await Videogame.findAll({
+//         // offset: //int, limit: //int
+//     });
+//     const slugArr = allSlugs.map(eachSlug => {
+//         const x = eachSlug.slug // Instead of slug: "wii-sports" it is logging "wii-sports"
+//         console.log(x);
+//         axios
+//             .get(`http://api.rawg.io/api/games/${x}?key=${process.env.RAWG_KEY}&dates=2019-09-01,2019-09-30&platforms=18,1,7`)
+//             .then((response) => {
+//                 Videogame.update(
+//                     {
+//                         description: response.data.description,
+//                         background_image: response.data.background_image,
+//                         website: response.data.website
+//                     },
+//                     {
+//                         where: {
+//                             slug: x,
+//                         }
+//                     });
+//             })
+//             .then((response) => { console.log(response) })
+//             .catch((error) => console.log(error));
+//     })
+// }
+// apiReqwithSlug();
 
 module.exports = router;
 
