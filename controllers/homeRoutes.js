@@ -101,13 +101,46 @@ router.post('/combine', asyncHandler(async (req, res) => {
     res.json({ message: 'post request successful' });
 }));
 
-// SELECT slug FROM videogames 
-// store that in a variable
-// for each slug in the variable, pass one to the ${slug}
+// --We need to SELECT slug FROM videogames and store it in a variable we can access.
+// --If done correctly, it should look like this:
+// -- const allSlugs = { { slug: "wii-sports"}, { slug: "mario-party"} };
+// DONE --> Using map or a loop, iterate over this object for each slug value. 
+// DONE --> Plug that value into an axios request that grabs the description, background_image, and website. 
+// DONE --> Test out if everything works by console.logging the results
+// --If successful, we can drop these received results into a dummy table called apiResponses.
+// --We will need to build a temporary model called apiResponse that has slug, description, background_image, and website inside with the appropriate DataTypes(should match Videogame.js).
+// --Once the data is inserted into the table apiResponses, Tyler will convert that table data to a CSV, and copy and paste the three columns we want into our videogames.csv file's empty columns. 
+// --When we have a complete CSV file that includes description, background_image, and website, we can import that data into videogames.
+// --If successful, we are all done!
 
-axios
-    .get(`https://api.rawg.io/api/games/super-mario-bros?key=${process.env.RAWG_KEY}&dates=2019-09-01,2019-09-30&platforms=18,1,7`)
-    .then((response) => console.log(response.data.description, response.data.background_image, response.data.website))
-    .catch((error) => console.log(error));
+router.get('/description', asyncHandler(async (req, res) => {
+    const allSlugs = Videogame.findAll();
+    const slugs = await allSlugs.map(game => {
+        const gameSlugs = game.slug;
+        return {
+            slug: gameSlugs,
+        }
+    });
+}));
+
+// Global variable
+const apiSlugs = [{ slug: "wii-sports" }, { slug: "super-mario-bros" }, { slug: "halo-3" }, { slug: "overwatch" }];
+
+let slugArr = [];
+
+function apiReqwithSlug() {
+    apiSlugs.map(async eachSlug => {
+        const x = eachSlug.slug
+        console.log(x);
+        slugArr.push(x);
+        await axios
+            .get(`http://api.rawg.io/api/games/${x}?key=${process.env.RAWG_KEY}&dates=2019-09-01,2019-09-30&platforms=18,1,7`)
+            .then((response) => console.log(response.data.description, response.data.background_image, response.data.website))
+            .catch((error) => console.log(error));
+    })
+    console.log(slugArr);
+}
+apiReqwithSlug();
+
 
 module.exports = router;
