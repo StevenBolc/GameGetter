@@ -5,6 +5,12 @@ class Videogame extends Model { }
 
 Videogame.init(
     {
+        id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            autoIncrement: true,
+            primaryKey: true
+        },
         name: {
             type: DataTypes.TEXT,
             allowNull: false,

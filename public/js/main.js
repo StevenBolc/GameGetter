@@ -11,12 +11,12 @@ search.addEventListener('submit', async (e) => {
     };
 
     const search = slug(document.querySelector('.searchInput').value)
-    const response = await fetch(`/game/${search}`, {
+    const response = await fetch(`/gamesearch/${search}`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
     });
     if (response.ok) {
-        document.location.replace(`/game/${search}`)
+        document.location.replace(`/gamesearch/${search}`)
     }
 })
 
