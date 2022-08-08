@@ -101,8 +101,9 @@ router.post('/combine', asyncHandler(async (req, res) => {
 }));
 
 // --We need to SELECT slug FROM videogames and store it in a variable we can access.
+// -- Sort of like this but in JS: SELECT @allSlugs := slug FROM videogames;
 // --If done correctly, it should look like this:
-// -- const allSlugs = { { slug: "wii-sports"}, { slug: "mario-party"} };
+// -- const apiSlugs = { { slug: "wii-sports"}, { slug: "mario-party"}, {etc} };
 // DONE --> Using map or a loop, iterate over this object for each slug value. 
 // DONE --> Plug that value into an axios request that grabs the description, background_image, and website. 
 // DONE --> Test out if everything works by console.logging the results
@@ -112,15 +113,15 @@ router.post('/combine', asyncHandler(async (req, res) => {
 // --When we have a complete CSV file that includes description, background_image, and website, we can import that data into videogames.
 // --If successful, we are all done!
 
-router.get('/description', asyncHandler(async (req, res) => {
-    const allSlugs = Videogame.findAll();
-    const slugs = await allSlugs.map(game => {
-        const gameSlugs = game.slug;
-        return {
-            slug: gameSlugs,
-        }
-    });
-}));
+// router.get('/description', asyncHandler(async (req, res) => {
+//     const allSlugs = Videogame.findAll();
+//     const slugs = await allSlugs.map(game => {
+//         const gameSlugs = game.slug;
+//         return {
+//             slug: gameSlugs,
+//         }
+//     });
+// }));
 
 // Global variable
 const apiSlugs = [{ slug: "wii-sports" }, { slug: "super-mario-bros" }, { slug: "halo-3" }, { slug: "overwatch" }];
@@ -128,16 +129,16 @@ const apiSlugs = [{ slug: "wii-sports" }, { slug: "super-mario-bros" }, { slug: 
 let slugArr = [];
 
 function apiReqwithSlug() {
-    apiSlugs.map(async eachSlug => {
-        const x = eachSlug.slug
+    apiSlugs.map(eachSlug => {
+        const x = eachSlug.slug // Instead of slug: "wii-sports" it is logging "wii-sports"
         console.log(x);
         slugArr.push(x);
-        await axios
+        axios
             .get(`http://api.rawg.io/api/games/${x}?key=${process.env.RAWG_KEY}&dates=2019-09-01,2019-09-30&platforms=18,1,7`)
             .then((response) => console.log(response.data.description, response.data.background_image, response.data.website))
             .catch((error) => console.log(error));
     })
-    console.log(slugArr);
+    console.log(slugArr); // OUTPUT: [ 'wii-sports', 'super-mario-bros', 'halo-3', 'overwatch' ]
 }
 apiReqwithSlug();
 
