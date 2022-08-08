@@ -5,7 +5,6 @@ const asyncHandler = require('express-async-handler');
 const toSlug = require("../utils/helpers");
 const { Op } = require("sequelize");
 const sequelize = require('../config/connection');
-const { response, request } = require('express');
 const axios = require('axios').default;
 require('dotenv').config();
 
@@ -141,6 +140,5 @@ function apiReqwithSlug() {
     console.log(slugArr);
 }
 apiReqwithSlug();
-
 
 module.exports = router;
