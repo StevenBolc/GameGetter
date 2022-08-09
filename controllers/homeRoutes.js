@@ -84,11 +84,11 @@ router.get('/game/:id', asyncHandler(async (req, res) => {
             attributes: ['id', 'name', 'platform', 'year_of_release', 'description', 'genre', 'publisher', 'background_image', 'website']
         });
         const game = gameData.get({ plain: true });
-        res.json(game);
-        // res.render('gamePage', {
-        //     layout: 'main.handlebars',
-        //     game
-        // });
+        // res.json(game);
+        res.render('game', {
+            layout: 'gamepage.handlebars',
+            game
+        });
     } catch (err) {
         res.status(500).json(err);
     }
