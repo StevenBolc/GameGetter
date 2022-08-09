@@ -4,7 +4,7 @@ const withAuth = require('../utils/auth');
 const asyncHandler = require('express-async-handler');
 const Mygames = require('../models/Mygames');
 
-router.get('/', async (req, res) => {
+router.get('/', withAuth, asyncHandler(async (req, res) => {
     // find all games in user owned 
     try {
 
@@ -42,6 +42,6 @@ router.get('/', async (req, res) => {
     }
 
     // res.json({ message: 'get successful' })
-});
+}));
 
 module.exports = router;
