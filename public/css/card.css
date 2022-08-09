@@ -14,7 +14,6 @@
     margin: 0;
     padding: 0;
     font-family: arcade-classic;
-    background-color: black;
 }
 
 .container {
@@ -30,8 +29,7 @@
 }
 
 .container .card {
-    margin: 30px;
-    padding: 2px;
+    margin: 60px 30px 30px 30px;
     background: var(--yellow);
     border-radius: 10px;
     box-shadow: -6px -6px 6px var(--yellow),
@@ -40,6 +38,14 @@
         6px 6px 6px var(--yellow),
         8px 8px 8px var(--purple),
         10px 10px 10px var(--pink);
+}
+
+.card img {
+    height: 16vh;
+}
+
+.card-body {
+    background-color: black;
 }
 
 .btn {

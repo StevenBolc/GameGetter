@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { User } = require('../../models');
+const Mygames = require('../../models/Mygames');
 const withAuth = require('../../utils/auth');
 // const asyncHandler = require('express-async-handler');
 
@@ -65,11 +66,19 @@ router.post('/logout', async (req, res) => {
     }
 });
 
-router.put('/:id', async (req, res) => {
-    const updateUserOwned = await User.findOne({ where: { user_id: req.session.user_id } });
-    await updateUserOwned.update({
-        //
-    })
+router.post('/mylist/:id', withAuth, async (req, res) => {
+    try {
+        const updateUserOwned = await Mygames.create({
+            user_id: req.session.user_id,
+            videogames_id: req.params.id,
+        });
+        res.render('myList', {
+            layout: 'dashboard.handlebars'
+        });
+    } catch (err) {
+        res.status(500).json(err)
+    }
 })
+
 
 module.exports = router;

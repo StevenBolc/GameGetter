@@ -47,8 +47,8 @@ router.get('/gamesearch/:game', asyncHandler(async (req, res) => {
     }
 }))
 
-router.get('/contact', (req, res) => {
-    res.render('contactPage', {
+router.get('/about', (req, res) => {
+    res.render('aboutUs', {
         layout: 'contact.handlebars'
     })
     // res.json({ message: 'success' })
