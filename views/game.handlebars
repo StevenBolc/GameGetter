@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container ">
     <h1 class="neonText">Game Info</h1>
     <div class="neonText">
         <h2>Name of Game:</h2>
@@ -22,4 +22,14 @@
         <a href="{{game.website}}" target="_blank">{{game.name}}</a>
         {{/if}}
     </div>
+    <div class="button">
+        <button class="btn btn-primary home" style="font-size: 2rem;">Home</button>
+    </div>
 </div>
+
+<script>
+    document.querySelector('.home').addEventListener('click', (e) => {
+        e.preventDefault();
+        document.location.replace('/')
+    })
+</script>

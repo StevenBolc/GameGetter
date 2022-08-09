@@ -55,23 +55,30 @@ router.post('/login', async (req, res) => {
     });
 });
 
-router.post('/logout', async (req, res) => {
-    if (req.session.logged_in) {
-        req.session.destroy(() => {
-            res.json({ message: 'logout successful' })
-            res.status(204).end();
-        });
-    } else {
-        res.status(404).end();
-    }
-});
+// router.post('/logout', async (req, res) => {
+//     if (req.session.logged_in) {
+//         req.session.destroy(() => {
+//             res.json({ message: 'logout successful' })
+//             res.status(204).end();
+//         });
+//     } else {
+//         res.status(404).end();
+//     }
+// });
 
 router.post('/mylist/:id', withAuth, async (req, res) => {
     try {
+        // const userData = await User.findOne({
+        //     where: {
+        //         id: req.session.user_id,
+        //     },
+        // });
+        console.log(req.session.user_id);
         const updateUserOwned = await Mygames.create({
             user_id: req.session.user_id,
             videogames_id: req.params.id,
         });
+        // console.log(updateUserOwned);
         res.render('myList', {
             layout: 'dashboard.handlebars'
         });

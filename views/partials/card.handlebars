@@ -11,8 +11,10 @@
         <div class="card-body">
             <h5 class="card-title cardText">{{game.name}}</h5>
             <p class="card-text">{{game.platform}}</p>
-            <button class="btn btn-dark" id="favorite" data-id="{{game.id}}">Add Favorite</button>
+            <button class="btn btn-dark favorite" data-id="{{game.id}}">Add Favorite</button>
         </div>
     </div>
     {{/each}}
 </section>
+
+<script src="/js/favorite.js"></script>

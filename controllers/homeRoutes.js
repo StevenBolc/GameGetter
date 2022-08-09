@@ -65,6 +65,17 @@ router.get('/login', (req, res) => {
     // res.json({ message: 'welcome' })
 });
 
+router.post('/logout', async (req, res) => {
+    if (req.session.logged_in) {
+        req.session.destroy(() => {
+            res.json({ message: 'logout successful' })
+            res.status(204).end();
+        });
+    } else {
+        res.status(404).end();
+    }
+});
+
 router.get('/signup', asyncHandler(async (req, res) => {
     res.render('signupPage');
 }));
