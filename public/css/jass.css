@@ -1140,8 +1140,7 @@ form .form-label {
 }
 
 form .form-input {
-  width: 100%;
-  padding: 0.75rem;
+  padding: 0.25rem;
   color: #1a1a1a;
   background-color: #ffffff;
   margin: 0.625rem 0;
