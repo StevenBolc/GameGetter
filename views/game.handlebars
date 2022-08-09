@@ -1,0 +1,25 @@
+<div class="container">
+    <h1 class="neonText">Game Info</h1>
+    <div class="neonText">
+        <h2>Name of Game:</h2>
+        <p>{{game.name}}</p>
+        <div class="block glow">
+
+            <img src="{{game.background_image}}" alt="" />
+        </div>
+
+        <h2>Platform:</h2>
+        <p>{{game.platform}}</p>
+        <h2>Year Released:</h2>
+        <p>{{game.year_of_release}}</p>
+        <h2>Genre:</h2>
+        <p>{{game.genre}}</p>
+        <h2>Publisher:</h2>
+        <p>{{game.publisher}}</p>
+        <h2>Description:</h2>
+        {{{game.description}}}
+        {{#if game.website}}
+        <a href="{{game.website}}" target="_blank">{{game.name}}</a>
+        {{/if}}
+    </div>
+</div>

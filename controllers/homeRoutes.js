@@ -47,8 +47,8 @@ router.get('/gamesearch/:game', asyncHandler(async (req, res) => {
     }
 }))
 
-router.get('/contact', (req, res) => {
-    res.render('contactPage', {
+router.get('/about', (req, res) => {
+    res.render('aboutUs', {
         layout: 'contact.handlebars'
     })
     // res.json({ message: 'success' })
@@ -84,11 +84,11 @@ router.get('/game/:id', asyncHandler(async (req, res) => {
             attributes: ['id', 'name', 'platform', 'year_of_release', 'description', 'genre', 'publisher', 'background_image', 'website']
         });
         const game = gameData.get({ plain: true });
-        res.json(game);
-        // res.render('gamePage', {
-        //     layout: 'main.handlebars',
-        //     game
-        // });
+        // res.json(game);
+        res.render('game', {
+            layout: 'gamepage.handlebars',
+            game
+        });
     } catch (err) {
         res.status(500).json(err);
     }
