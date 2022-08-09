@@ -36,7 +36,7 @@ router.get('/gamesearch/:game', asyncHandler(async (req, res) => {
         } else {
             // res.json(games);
             res.render('searchResults', {
-                layout: 'main.handlebars',
+                layout: 'search.handlebars',
                 games
             })
         };
