@@ -68,10 +68,17 @@ router.post('/login', async (req, res) => {
 
 router.post('/mylist/:id', withAuth, async (req, res) => {
     try {
+        // const userData = await User.findOne({
+        //     where: {
+        //         id: req.session.user_id,
+        //     },
+        // });
+        console.log(req.session.user_id);
         const updateUserOwned = await Mygames.create({
             user_id: req.session.user_id,
             videogames_id: req.params.id,
         });
+        // console.log(updateUserOwned);
         res.render('myList', {
             layout: 'dashboard.handlebars'
         });

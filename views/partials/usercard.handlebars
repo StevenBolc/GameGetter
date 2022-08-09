@@ -1,0 +1,18 @@
+<link rel="stylesheet" href="/css/card.css" />
+
+<section class="container" style="display: flex-wrap;">
+    {{#each games as |game|}}
+    <div class="card" style="width: 18rem;">
+        <a href="/game/{{game.videogame.id}}">
+            <div>
+                <img src='{{game.videogame.background_image}}' class="card-img-top"
+                    alt="{{game.videogame.name}} poster" />
+            </div>
+        </a>
+        <div class="card-body">
+            <h5 class="card-title cardText">{{game.videogame.name}}</h5>
+            <p class="card-text">{{game.videogame.platform}}</p>
+        </div>
+    </div>
+    {{/each}}
+</section>

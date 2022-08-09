@@ -6,23 +6,26 @@ const Mygames = require('../models/Mygames');
 
 router.get('/', withAuth, asyncHandler(async (req, res) => {
     // find all games in user owned 
+
     try {
 
         const myGames = await Mygames.findAll({
             where: {
                 user_id: req.session.user_id
             },
-            // attributes: [
-            //     'name',
-            //     'description',
-            //     'platform',
-            //     'background_image',
-            //     'website',
-            // ],
+            attributes: [
+                'user_id',
+                'videogames_id',
+                // 'name',
+                // 'description',
+                // 'platform',
+                // 'background_image',
+                // 'website',
+            ],
             include: [
                 {
                     model: Videogame,
-                    attributes: ['id', 'name', 'platform', 'year_of_release', 'genre', 'publisher', 'description', 'background_image', 'website'],
+                    attributes: ['id', 'name', 'platform', 'background_image'],
                     include: {
                         model: User,
                         attributes: ['id'],
