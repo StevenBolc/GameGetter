@@ -31,7 +31,6 @@ header h1 {
     background: none;
     position: absolute;
     top: 1vh;
-    left: 1vw;
     padding: 5px 15px 0px 15px;
     color: white;
     cursor: pointer;
@@ -206,3 +205,49 @@ a:hover {
     color: white;
 }
 
+.text {
+    color: white;
+    position: relative;
+    z-index: 10;
+    padding-bottom: 20px;
+}
+
+.text h2 {
+    font-size: 3em;
+    font-weight: 800;
+    line-height: 1em;
+    text-transform: uppercase;
+}
+
+.text h3 {
+    font-size: 2em;
+    font-weight: 600;
+    line-height: 1em;
+    text-transform: uppercase;
+}
+
+.toggle {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    background: url("/assets/images/menu.webp");
+    background-repeat: no-repeat;
+    background-size: 40px;
+    background-position: center;
+    cursor: pointer;
+}
+
+.toggle.active {
+    background: url("/assets/images/close.jpg");
+    background-repeat: no-repeat;
+    background-size: 40px;
+    background-position: center;
+}
+
+.login-block {
+    padding-left: 10px;
+}
+
+#login-title {
+    padding-left: 10px;
+}
