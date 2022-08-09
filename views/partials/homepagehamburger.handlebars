@@ -3,19 +3,19 @@
         <li id="color-1"><a href="/">
                 <h4>Home</h4>
             </a></li>
-        <li id="color-3"><a href="/dashboard">
+        <li id="color-2"><a href="/dashboard">
                 <h4>My Dashboard</h4>
             </a></li>
-        <li id="color-4"><a href="/about">
+        <li id="color-3"><a href="/about">
                 <h4>About Us</h4>
             </a></li>
         {{#if logged_in}}
-        <li id="color-2"><a href="/login">
-                <h4>Login</h4>
-            </a></li>
-        {{else}}
         <li id="color-5"><a href="/logout">
                 <h4>Logout</h4>
+            </a></li>
+        {{else}}
+        <li id="color-4"><a href="/login">
+                <h4>Login</h4>
             </a></li>
         {{/if}}
     </ul>

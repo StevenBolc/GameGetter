@@ -11,8 +11,14 @@ router.post('/', async (req, res) => {
             email: req.body.email,
             password: req.body.password,
         });
+        const userData = await User.findOne({
+            where: {
+                email: req.body.email
+            },
+        });
 
         req.session.save(() => {
+            req.session.user_id = userData.id;
             req.session.logged_in = true;
 
             res.status(200).json(dbUserData);
@@ -53,18 +59,22 @@ router.post('/login', async (req, res) => {
 
         res.status(200).json({ user: userData, message: 'You are now logged in!' });
     });
+    res.render('homepage', {
+        layout: 'main.handlebars'
+    })
 });
 
-// router.post('/logout', async (req, res) => {
-//     if (req.session.logged_in) {
-//         req.session.destroy(() => {
-//             res.json({ message: 'logout successful' })
-//             res.status(204).end();
-//         });
-//     } else {
-//         res.status(404).end();
-//     }
-// });
+router.post('/logout', withAuth, async (req, res) => {
+    if (req.session.logged_in) {
+        req.session.logged_in = false;
+        req.session.destroy(() => {
+            // res.json({ message: 'logout successful' })
+            res.status(204).end();
+        });
+    } else {
+        res.status(404).end();
+    }
+});
 
 router.post('/mylist/:id', withAuth, async (req, res) => {
     try {
