@@ -1,5 +1,5 @@
 const home = document.getElementById('home');
-const dashboard = document.getElementById('dashboard');
+// const dashboard = document.getElementById('dashboard');
 
 home.addEventListener('click', async (e) => {
     e.preventDefault();
@@ -12,18 +12,18 @@ home.addEventListener('click', async (e) => {
         document.location.replace('/');
     }
 });
-dashboard.addEventListener('click', async (e) => {
-    console.log('DASHBOARD');
-    e.preventDefault();
-    const response = await fetch('/dashboard', {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
-    });
-    if (response.ok) {
-        console.log(document.location);
-        document.location.replace('/dashboard');
-    }
-});
+// dashboard.addEventListener('click', async (e) => {
+//     console.log('DASHBOARD');
+//     e.preventDefault();
+//     const response = await fetch('/dashboard', {
+//         method: 'GET',
+//         headers: { 'Content-Type': 'application/json' },
+//     });
+//     if (response.ok) {
+//         console.log(document.location);
+//         document.location.replace('/dashboard');
+//     }
+// });
 
 const logout = async () => {
     const response = await fetch('/api/users/logout', {
@@ -32,7 +32,7 @@ const logout = async () => {
     });
 
     if (response.ok) {
-        document.location.reload();
+        document.location.replace('/');
     } else {
         alert(response.statusText);
     }
