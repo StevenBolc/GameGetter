@@ -60,19 +60,26 @@ Videogame.init(
             allowNull: true,
         },
         background_image: {
-            type: DataTypes.STRING, 
+            type: DataTypes.STRING,
             allowNull: true,
         },
         website: {
             type: DataTypes.STRING,
             allowNull: true,
         },
+        user_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'user',
+                key: 'id',
+            },
+        },
     },
     {
         sequelize,
         timestamps: false,
         underscored: true,
-        modelName: 'videogame',
+        modelName: 'videogames',
     }
 );
 
