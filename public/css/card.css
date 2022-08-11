@@ -52,3 +52,6 @@
     color: var(--yellow);
     border-color: var(--yellow);
 }
+.test{
+    display: none;
+}
