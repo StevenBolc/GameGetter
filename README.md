@@ -40,7 +40,8 @@
   ## Questions
   If you have any questions, feel free to reach out to the following development team members:
 
-  Tyler Evans, Database Management and UI Design
-
-  GitHub: https://github.com/TDEvans97   Email: tylerdevansmusic@gmail.com
-
+  ### Tyler Evans, Database Management and UI Design
+    GitHub: https://github.com/TDEvans97   Email: tylerdevansmusic@gmail.com
+  
+  ### Kris Marshall, Server Management and Layout Design
+    GitHub: https://github.com/RflctnOfU   Email: rflctnofu@hotmail.com
